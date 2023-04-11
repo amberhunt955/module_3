@@ -1,5 +1,10 @@
+require('dotenv').config(); // call and configure your .env package
+
 const express = require('express');
+const mongoose = require('mongoose');
+// Data
 const fruits = require('./models/fruits');
+const Fruit = require('./models/Fruit');
 
 const app = express();
 const PORT = 3000;
@@ -20,7 +25,7 @@ app.use(express.urlencoded({extended: false}))
 
 //* routes
 app.get('/', (req, res) => {
-    res.send('<h1>Hello</h1>')
+    res.render('Index')
 })
 
 /**
@@ -28,7 +33,10 @@ app.get('/', (req, res) => {
  */
 app.get('/fruits/', (req, res) => {
     // res.send(fruits);
-    res.render('Index', {fruits: fruits})
+    // res.render('fruits/Index', {fruits: fruits})
+    Fruit.find({}, (error, allFruits) => {
+        res.render('fruits/Index', {fruits: allFruits})
+    })
 })
 
 /**
@@ -42,23 +50,29 @@ app.post('/fruits/', (req, res) => {
     } else {
         req.body.readyToEat = false;
     }
-    fruits.push(req.body);
-    res.redirect('/fruits/')
+    // fruits.push(req.body);
+    Fruit.create(req.body, (error, createdFruit) => {
+        // res.send(createdFruit)
+        res.redirect('/fruits/')
+    })
 })
 
 /**
  * New Route: (return a form to create a new fruit)
  */
 app.get('/fruits/new', (req, res) => {
-    res.render('New')
+    res.render('fruits/New')
 })
 
 /**
  * Show Route: (returns a single fruit)
  */
-app.get('/fruits/:indexOfFruitsArray', (req, res) => {
+app.get('/fruits/:id', (req, res) => {
     // res.send(fruits[req.params.indexOfFruitsArray])
-    res.render('Show', {fruit: fruits[req.params.indexOfFruitsArray]})
+    // res.render('fruits/Show', {fruit: fruits[req.params.indexOfFruitsArray]})
+    Fruit.findById(req.params.id, (error, foundFruit) => {
+        res.render('fruits/Show', {fruit: foundFruit})
+    })
 })
 
 app.get('*', (req, res) => {
@@ -67,5 +81,18 @@ app.get('*', (req, res) => {
 
 //* tell the app to listen on port 3000
 app.listen(PORT, function() {
-    console.log(`Listening on port ${PORT}...`);
+    console.log(`Server mounting on port ${PORT}...`);
+    // get rid of the deprecation warning
+    mongoose.set('strictQuery', true);
+    // connect to MongoDB
+    // object to use the latest options in mongoose (will always be the same)
+    mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      });
+    // check to see if the connection is successful
+    // (if we don't have the once - this could run every single time. we don't want that)
+    mongoose.connection.once('open', () => {
+        console.log('Connected to MongoDB');
+    })
 })

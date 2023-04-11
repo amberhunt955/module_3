@@ -1,6 +1,8 @@
 const React = require("react");
 
-function NotFound() {
+function Index(props) {
+  const { fruits } = props;
+
   return (
     <div>
       <nav>
@@ -15,11 +17,20 @@ function NotFound() {
         <a href="/vegetables/new">Add a new veggie</a>
       </nav>
 
-      <h1>404 Page Not Found</h1>
+      <h1>Fruit List</h1>
 
-      <a href="/">Go back home</a>
+      <ul>
+        {fruits.map((fruit, i) => {
+          return (
+            <li key={fruit._id}>
+              <a href={`/fruits/${fruit._id}`}>{fruit.name}</a>
+            </li>
+          );
+        })}
+      </ul>
+
     </div>
   );
 }
 
-module.exports = NotFound;
+module.exports = Index;

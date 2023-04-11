@@ -1,6 +1,9 @@
+//* require/import react
 const React = require("react");
 
-function NotFound() {
+function Show(props) {
+  const { fruit } = props;
+
   return (
     <div>
       <nav>
@@ -15,11 +18,16 @@ function NotFound() {
         <a href="/vegetables/new">Add a new veggie</a>
       </nav>
 
-      <h1>404 Page Not Found</h1>
+      <h1>{fruit.name}</h1>
 
-      <a href="/">Go back home</a>
+      The {fruit.name} is {fruit.color}.{fruit.readyToEat ? " It is ready to eat." : " Sorry, it's not ripe yet."}
+      
+      <br />
+      <br />
+
+      <a href="/fruits/">Go back</a>
     </div>
   );
 }
 
-module.exports = NotFound;
+module.exports = Show;

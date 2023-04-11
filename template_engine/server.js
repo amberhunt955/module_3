@@ -24,10 +24,10 @@ app.engine('madeline', (filePath, options, callback) => {
 //& Config ===========================
 //? setting the views folder in our app
 app.set('views', './views');
+//TODO: tell our express app to use our new template engine
 //? tells our app to use the 'madeline' engine we defined on top
 app.set('view engine', 'madeline');
 
-//TODO: tell our express app to use our new template engine
 
 //TODO: create routes
 app.get('/', (req, res) => {
