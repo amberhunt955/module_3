@@ -12,9 +12,9 @@ module.exports = function () {
     useUnifiedTopology: true,
   });
 
-  setTimeout(() => {
-    db.close();
-  }, 5000)
+  // setTimeout(() => {
+  //   db.close();
+  // }, 5000)
 
   // Listen for error, open, or close on connection
   db.on("error", (error) => console.log(error));
