@@ -1,35 +1,35 @@
 const React = require("react");
+const DefaultLayout = require("../layout/Default");
 
 function Index(props) {
   const { fruits } = props;
 
   return (
-    <div>
-      <nav>
-        <a href="/">Home</a>
-        {` | `}
-        <a href="/fruits/">Fruits</a>
-        {` | `}
-        <a href="/vegetables/">Vegetables</a> 
-        <br/>
-        <a href="/fruits/new">Add a new fruit</a>
-        {` | `}
-        <a href="/vegetables/new">Add a new veggie</a>
-      </nav>
-
-      <h1>Fruit List</h1>
+    <DefaultLayout title="Fruits Index">
+      <h2>Fruit List</h2>
 
       <ul>
         {fruits.map((fruit, i) => {
+          fruit.name = fruit.name.charAt(0).toUpperCase() + fruit.name.slice(1);
+          
           return (
-            <li key={fruit._id}>
-              <a href={`/fruits/${fruit._id}`}>{fruit.name}</a>
-            </li>
+            <div>
+              <li key={fruit._id}>
+                <a href={`/fruits/${fruit._id}`}>{fruit.name}</a>
+              </li>
+
+              <a href={`/fruits/${fruit._id}/edit`}>Edit</a>
+
+              <form method="POST" action={`/fruits/${fruit.id}?_method=DELETE`}>
+                <input type="submit" value="DELETE" />
+              </form>
+            </div>
           );
         })}
       </ul>
 
-    </div>
+      <a href="/fruits/new">Create a new fruit</a>
+    </DefaultLayout>
   );
 }
 

@@ -1,24 +1,13 @@
 const React = require("react");
+const DefaultLayout = require("./layout/Default");
 
 function NotFound() {
   return (
-    <div>
-      <nav>
-        <a href="/">Home</a>
-        {` | `}
-        <a href="/fruits/">Fruits</a>
-        {` | `}
-        <a href="/vegetables/">Vegetables</a> 
-        <br/>
-        <a href="/fruits/new">Add a new fruit</a>
-        {` | `}
-        <a href="/vegetables/new">Add a new veggie</a>
-      </nav>
-
-      <h1>404 Page Not Found</h1>
+    <DefaultLayout title="404 - Page Not Found">
+      <h2>Sorry, this page does not exist.</h2>
 
       <a href="/">Go back home</a>
-    </div>
+    </DefaultLayout>
   );
 }
 

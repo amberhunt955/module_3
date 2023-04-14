@@ -1,24 +1,12 @@
 const React = require("react");
+const DefaultLayout = require("./layout/Default");
 
-function Index(props) {
-  const { fruits } = props;
+function Index() {
 
   return (
-    <div>
-      <nav>
-        <a href="/">Home</a>
-        {` | `}
-        <a href="/fruits/">Fruits</a>
-        {` | `}
-        <a href="/vegetables/">Vegetables</a> 
-        <br/>
-        <a href="/fruits/new">Add a new fruit</a>
-        {` | `}
-        <a href="/vegetables/new">Add a new veggie</a>
-      </nav>
-
-      <h1>Welcome to the website!</h1>
-    </div>
+    <DefaultLayout title="Home Page">
+      <h2>Welcome to the website!</h2>
+    </DefaultLayout>
   );
 }
 

@@ -1,21 +1,10 @@
 const React = require("react");
+const DefaultLayout = require("../layout/Default");
 
 function New() {
   return (
-    <div>
-      <nav>
-        <a href="/">Home</a>
-        {` | `}
-        <a href="/fruits/">Fruits</a>
-        {` | `}
-        <a href="/vegetables/">Vegetables</a> 
-        <br/>
-        <a href="/fruits/new">Add a new fruit</a>
-        {` | `}
-        <a href="/vegetables/new">Add a new veggie</a>
-      </nav>
-
-      <h1>New Fruit page</h1>
+    <DefaultLayout title="New Fruit Form">
+      <h2>Add a New Fruit</h2>
 
       {/* NOTE: action will be the route, method will be the HTTP verb */}
       <form action="/fruits" method="POST">
@@ -35,9 +24,14 @@ function New() {
         <br />
         
         <input type="submit" name="" value="Create Fruit" />
+
+        <br />
+        <br />
       </form>
+
+      <a href='/fruits'>Go Back</a>
     
-    </div>
+    </DefaultLayout>
   );
 }
 

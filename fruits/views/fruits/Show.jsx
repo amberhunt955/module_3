@@ -1,32 +1,22 @@
-//* require/import react
 const React = require("react");
+const DefaultLayout = require("../layout/Default");
 
 function Show(props) {
   const { fruit } = props;
 
+  fruit.name = fruit.name.charAt(0).toUpperCase() + fruit.name.slice(1);
+
   return (
-    <div>
-      <nav>
-        <a href="/">Home</a>
-        {` | `}
-        <a href="/fruits/">Fruits</a>
-        {` | `}
-        <a href="/vegetables/">Vegetables</a> 
-        <br/>
-        <a href="/fruits/new">Add a new fruit</a>
-        {` | `}
-        <a href="/vegetables/new">Add a new veggie</a>
-      </nav>
+    <DefaultLayout title="Fruit Display">
+      <h2>{fruit.name}</h2>
 
-      <h1>{fruit.name}</h1>
-
-      The {fruit.name} is {fruit.color}.{fruit.readyToEat ? " It is ready to eat." : " Sorry, it's not ripe yet."}
+      The {fruit.name.toLowerCase()} is {fruit.color}.{fruit.readyToEat ? " It is ready to eat." : " Sorry, it's not ripe yet."}
       
       <br />
       <br />
 
-      <a href="/fruits/">Go back</a>
-    </div>
+      <a href="/fruits/">Go Back</a>
+    </DefaultLayout>
   );
 }
 
