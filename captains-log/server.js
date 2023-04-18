@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const connectToDB = require("./config/db");
+const methodOverride = require("method-override");
 
 // Data
 const Log = require("./models/Log");
@@ -14,6 +15,7 @@ app.engine("jsx", require("jsx-view-engine").createEngine());
 
 //& === MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 
 //& === ROUTES
 /**
@@ -33,7 +35,7 @@ app.get("/logs", (req, res) => {
 });
 
 /**
- * POST FLIGHT TO INDEX
+ * POST LOG TO INDEX
  */
 app.post("/logs", (req, res) => {
   if (req.body.shipIsBroken === "on") {
@@ -51,6 +53,34 @@ app.post("/logs", (req, res) => {
  */
 app.get("/logs/new", (req, res) => {
   res.render("logs/New");
+});
+
+/**
+ * RETURN THE EDIT FORM
+ */
+app.get("/logs/:id/edit", (req, res) => {
+  Log.findById(req.params.id, (error, foundLog) => {
+    if (!error) {
+      res.render("logs/Edit", { log: foundLog });
+    } else {
+      res.send({ msg: error.message });
+    }
+  });
+});
+
+/**
+ * HANDLE EDIT FORM DATA
+ */
+app.put("/logs/:id", (req, res) => {
+  if (req.body.shipIsBroken === "on") {
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
+
+  Log.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, updatedLog) => {
+    res.redirect(`/logs/${req.params.id}`)
+  });
 });
 
 /**

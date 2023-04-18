@@ -9,6 +9,7 @@ function Show(props) {
             <h2>{log.title}</h2>
             <p>{log.entry}</p>
             {log.shipIsBroken ? <p>The ship is broken.</p> : <p>No problems reported.</p>}
+            <a href={`/logs/${log._id}/edit`}>Edit this entry</a><br/>
             <a href='/logs'>Go Back</a>
         </DefaultLayout>
     )
