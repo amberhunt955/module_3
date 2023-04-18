@@ -23,7 +23,13 @@ app.use((req, res, next) => {
 
 // parses the data from the request
 app.use(express.urlencoded({ extended: false }));
+
+// for form edit
 app.use(methodOverride("_method"));
+
+// for css
+// tells express to try to match requests with files in the directory called 'public'
+app.use(express.static('public'));
 
 //* routes
 app.get("/", (req, res) => {

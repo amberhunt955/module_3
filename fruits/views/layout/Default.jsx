@@ -6,6 +6,7 @@ function DefaultLayout(props) {
     return (
         <html>
             <head>
+            <link rel="stylesheet" href="/css/app.css" /> 
                 <title>{title}</title>
 
                 <nav>
