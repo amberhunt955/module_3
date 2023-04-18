@@ -5,50 +5,9 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#welcome {
-  max-width: fit-content;
-  margin-inline: auto;
-  text-align: center;
-}
-
-.navbar {
-  height: 50px;
-  background-color: #3c486b;
-  color: #f0f0f0;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-}
-
-.navbar > a {
-  color: #f0f0f0;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.navbar > a:hover {
-  color: #f9d949;
-}
-
 body {
   background-color: #f9d949;
   color: #f37777;
-}
-
-a {
-  color: #3c486b;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.log:hover {
-  background-color: #3c486b;
-  color: #f9d949;
-  padding: 5px;
-  border-radius: 10px;
 }
 
 .page {
@@ -68,18 +27,57 @@ h2 {
   margin-bottom: 10px;
 }
 
-#logs-index {
-  max-width: 80vw;
+a {
+  color: #3c486b;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ============= HOME & NAVIGATION ============= */
+
+#welcome {
+  max-width: fit-content;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.navbar {
+  height: 50px;
+  background-color: #3c486b;
+  color: #f0f0f0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 2px 0px black;
+}
+
+.navbar > a {
+  color: #f0f0f0;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.navbar > a:hover {
+  color: #f9d949;
+}
+
+/* ============= LOGS INDEX PAGE ============= */
+
+#logs-index-page {
+  max-width: 1000px;
   margin-inline: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
-#logs-list {
+#list-of-logs {
   border: 2px solid #3c486b;
   border-radius: 20px;
   height: 400px;
@@ -87,25 +85,25 @@ h2 {
   padding: 10px;
   background-color: #949bad;
   color: #f45050;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 }
 
-#log {
+#list-of-logs::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+/* ============= LOG DISPLAY PAGE ============= */
+
+#log-display {
   border: 2px solid #3c486b;
   border-radius: 20px;
   height: 400px;
   width: 600px;
   padding: 10px;
   background-color: #949bad;
-  color: #f45050;
-}
-
-#options {
-    width: 600px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 20px 0;
+  color: #505C7C;
 }
 
 ul {
@@ -117,6 +115,23 @@ li {
   padding: 5px 0;
 }
 
+#options {
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* ============= BUTTONS ============= */
+.log:hover {
+  background-color: #3c486b;
+  color: #f9d949;
+  padding: 8px;
+  border-radius: 10px;
+}
+
 .action {
   max-height: 40px;
   min-height: 40px;
@@ -124,6 +139,11 @@ li {
   padding: 10px;
   display: flex;
   align-items: center;
+  background-color: #f9d949;
+  color: #3c486b;
+  font-size: 15px;
+  border: 2px solid #f9d949;
+  margin-inline: auto;
 }
 
 .action:hover {
@@ -132,12 +152,46 @@ li {
   border-radius: 10px;
 }
 
+/* ============= FORM ============= */
+
+.form {
+  max-width: fit-content;
+  padding: 10px;
+  margin-inline: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid #3c486b;
+  border-radius: 10px;
+  background-color: #949bad;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color:#3c486b;
+}
+
 input {
-    padding: 20px;
-    border-radius: 10px;
-    max-height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 input:hover {
     background-color: #f37777;
+}
+
+button {
+  padding: 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
 }

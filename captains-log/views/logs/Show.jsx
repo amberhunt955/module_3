@@ -6,10 +6,10 @@ function Show(props) {
 
   return (
     <DefaultLayout title="Display Log">
-      <div id="log">
-        <h2>{log.title}</h2>
+      <div id="log-display">
+        <h2>{log.title}</h2><br/>
 
-        <p>{log.entry}</p>
+        <p>{log.entry}</p><br/>
 
         {log.shipIsBroken ? <p>The ship is broken.</p> : <p>No problems reported.</p>}
       </div>
@@ -20,7 +20,7 @@ function Show(props) {
         </a>
 
         <form method="POST" action={`/logs/${log.id}?_method=DELETE`}>
-          <input type="submit" value="DELETE" />
+          <input type="submit" value="DELETE" className="action" />
         </form>
 
         <a href="/logs" className="action">

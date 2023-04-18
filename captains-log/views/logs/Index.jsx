@@ -6,8 +6,8 @@ function Index(props) {
 
   return (
     <DefaultLayout title="Logs Index">
-      <section id="logs-index">
-        <div id="logs-list">
+      <section id="logs-index-page">
+        <div id="list-of-logs">
           <h2>My Logs</h2>
 
           {logs.length > 0 ? (
