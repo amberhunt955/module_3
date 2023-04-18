@@ -6,21 +6,31 @@ function Index(props) {
 
   return (
     <DefaultLayout title="Logs Index">
-      <h2>My Logs</h2>
+      <section id="logs-index">
+        <div id="logs-list">
+          <h2>My Logs</h2>
 
-      {logs.length > 0
-        ? logs.map((log) => {
-            return (
-              <ul>
-                <li key={log._id}>
-                  <a href={`/logs/${log._id}`}>{log.title}</a>
-                </li>
-              </ul>
-            );
-          })
-        : <p>No entries found.</p>}
+          {logs.length > 0 ? (
+            logs.map((log) => {
+              return (
+                <ul>
+                  <li key={log._id}>
+                    <a href={`/logs/${log._id}`} className="log">
+                      {log.title}
+                    </a>
+                  </li>
+                </ul>
+              );
+            })
+          ) : (
+            <p>No entries found.</p>
+          )}
+        </div>
 
-      <a href="/logs/new">Create a new log</a>
+        <a href="/logs/new" className="action">
+          Create a new log
+        </a>
+      </section>
     </DefaultLayout>
   );
 }

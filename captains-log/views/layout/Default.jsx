@@ -1,26 +1,30 @@
-const React = require('react');
+const React = require("react");
 
 function DefaultLayout(props) {
-    const { title, children } = props;
+  const { title, children } = props;
 
-    return (
-        <html>
-            <head>
-                <title>{title}</title>
+  return (
+    <html>
+      <head>
+        <link rel="stylesheet" href="/css/app.css" />
+        <title>{title}</title>
 
-                <nav>
-                    <a href='/'>Home</a>{" | "}
-                    <a href='/logs'>Logs</a>
-                </nav>
-            </head>
+        <nav className="navbar">
+          <a href="/">Home</a>
+          {" | "}
+          <a href="/logs">Logs</a>
+        </nav>
+      </head>
 
-            <body>
-                <h1>{title}</h1>
+      <body>
+        <section className="page">
+          <h1>{title}</h1>
 
-                {children}
-            </body>
-        </html>
-    )
+          {children}
+        </section>
+      </body>
+    </html>
+  );
 }
 
 module.exports = DefaultLayout;

@@ -16,6 +16,7 @@ app.engine("jsx", require("jsx-view-engine").createEngine());
 //& === MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
+app.use(express.static('public'));
 
 //& === ROUTES
 /**
@@ -93,6 +94,16 @@ app.get("/logs/:id", (req, res) => {
 });
 
 /**
+ * DELETE LOG
+ */
+app.delete("/logs/:id", (req, res) => {
+  Log.findByIdAndRemove(req.params.id, (error, deletedLog) => {
+    res.redirect("/logs");
+  });
+  // res.send('deleting fruit...')
+});
+
+/**
  * 404 NOT FOUND
  */
 app.get("*", (req, res) => {
@@ -100,7 +111,7 @@ app.get("*", (req, res) => {
 });
 
 //& === LISTEN AT DESIGNATED PORT
-const PORT = 3000;
+const PORT = 2000;
 
 app.listen(PORT, function () {
   console.log(`Server running at port ${PORT}...`);
