@@ -1,9 +1,12 @@
+require('dotenv').config();
+require('./config/database'); // connects to db
 const express = require('express');
 const path = require('path'); // node module
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
 const app = express();
+
 // development port: 3001
 // in production we'll use a PORT number set in the environment variables
 const PORT = process.env.PORT || 3001;

@@ -50,7 +50,7 @@ app.post("/logs", (req, res) => {
 });
 
 /**
- * LOGS INDEX
+ * CREATE NEW LOG
  */
 app.get("/logs/new", (req, res) => {
   res.render("logs/New");
