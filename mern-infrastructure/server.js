@@ -16,12 +16,15 @@ const PORT = process.env.PORT || 3001;
 // logger middleware
 app.use(logger('dev'));
 
-// JSON payload middleware (for data coming from front end functions)
+// JSON payload middleware (for data coming from frontend functions)
 app.use(express.json());
 
 // configure both serve-favicon & static middleware to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'build')))
+
+// all other routes
+app.use('/api/users', require('./routes/api/users'));
 
 //* === ROUTES ===
 //? Put API routes here, before the "catch all" route
