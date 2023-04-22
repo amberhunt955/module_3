@@ -9,17 +9,20 @@ import OrderHistoryPage from "./pages/OrderHistoryPage";
 // import components
 import NavBar from "./components/NavBar";
 
+// import utilities
+import { getUser } from "./utilities/users-service";
+
 // import styling
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getUser());
 
   return (
     <main className="App">
       {user ? 
         (<>
-          <NavBar />
+          <NavBar user={user} setUser={setUser} />
 
           <Routes>
             <Route path="orders/new" element={<NewOrderPage />} />
@@ -27,7 +30,7 @@ function App() {
           </Routes>
         </>)
         : 
-        <AuthPage />
+        <AuthPage setUser={setUser}/>
        }
     </main>
   );

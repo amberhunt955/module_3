@@ -1,15 +1,29 @@
 import { Link } from "react-router-dom";
 
-function NavBar() {
-    return (
-        <nav>
-            <Link to='/orders'>Order History</Link>
+// import utilities
+import { logOut } from "../utilities/users-service";
 
-            &nbsp; | &nbsp;
+function NavBar({ user, setUser }) {
+  user.name = user.name.charAt(0).toUpperCase() + user.name.slice(1);
 
-            <Link to='/orders/new'>New Order</Link>
-        </nav>
-    )
+  const handleLogOut = () => {
+    logOut();
+    setUser(null);
+  };
+
+  return (
+    <nav>
+      <Link to="/orders">Order History</Link>
+      &nbsp; | &nbsp;
+      <Link to="/orders/new">New Order</Link>
+      &nbsp; &nbsp;
+      <span>Welcome, {user.name}!</span>
+      &nbsp; &nbsp;
+      <Link to="" onClick={handleLogOut}>
+        Logout
+      </Link>
+    </nav>
+  );
 }
 
 export default NavBar;

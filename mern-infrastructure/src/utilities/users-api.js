@@ -19,3 +19,10 @@ export async function signUp(userData) {
         throw new Error('Invalid Sign Up!')
     }
 }
+
+//& my code
+
+export async function LogIn(username, password) {
+
+}
+
