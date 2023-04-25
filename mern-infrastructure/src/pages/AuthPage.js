@@ -1,16 +1,26 @@
+import { useState } from "react";
+
 // import components
 import SignUpForm from "../components/SignUpForm";
-import LogInForm from "../components/LoginForm";
+import LoginForm from "../components/LoginForm";
 
-function AuthPage({setUser}) {
+function AuthPage({ setUser }) {
+  const [showLogin, setShowLogin] = useState(true);
+
   return (
-    <div>
+    <main className="AuthPage">
       <h1>Auth Page</h1>
-      
-      <SignUpForm setUser={setUser}/>
 
-      <LogInForm />
-    </div>
+      <button onClick={() => setShowLogin(!showLogin)}>
+        {showLogin ? "Sign Up" : "Sign In"}
+      </button>
+
+      {showLogin ? (
+        <LoginForm setUser={setUser} />
+      ) : (
+        <SignUpForm setUser={setUser} />
+      )}
+    </main>
   );
 }
 

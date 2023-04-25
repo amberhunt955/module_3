@@ -15,15 +15,15 @@ const PORT = process.env.PORT || 3001;
 //* === CONFIG ===
 // logger middleware
 app.use(logger('dev'));
-
 // JSON payload middleware (for data coming from frontend functions)
 app.use(express.json());
-
 // configure both serve-favicon & static middleware to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'build')))
+// checks if token was sent and sets a user data on the req (req.user)
+app.use(require('./config/checkToken'));
 
-// all other routes
+// ...all other routes...
 app.use('/api/users', require('./routes/api/users'));
 
 //* === ROUTES ===
